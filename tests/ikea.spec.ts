@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { ikeaHomePage } from '../pages/IkeaHome';
+import { ikeaHomePage } from '../pages/ikeaHome';
 import { ikeaCatalogPage } from '../pages/ikeaCatalog';
 import {ikeaItem} from '../pages/ikeaItemPage'
 
