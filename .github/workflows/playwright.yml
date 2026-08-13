@@ -25,3 +25,19 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+    - name: Zip report
+      if: ${{ !cancelled() }}
+      run: zip -r playwright-report.zip playwright-report/
+    - name: Send email with report
+      if: ${{ !cancelled() }}
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: Playwright Test Report
+        to: giranor@gmail.com
+        from: ${{ secrets.EMAIL_USERNAME }}
+        body: Playwright test run completed. See attached report.
+        attachments: playwright-report.zip
