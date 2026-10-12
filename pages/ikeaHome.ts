@@ -23,7 +23,7 @@ export class ikeaHomePage {
   constructor(page: Page) {
     this.page = page;
     this.ikeaLogo = page.getByRole('link', {name: /לוגו של איקאה/}).locator('img');
-    this.acceptCookie = page.getByRole('button', {name: 'אישור'});
+    this.acceptCookie = page.locator("#onetrust-accept-btn-handler");
     this.searchInput = page.getByRole('combobox', {name: /חיפוש מוצרים/});
     this.searchDialog = page.locator('.search-box-dropdown');
     this.photoButton = page.getByRole('button', {name: /לפי תמונה/});
@@ -53,8 +53,8 @@ export class ikeaHomePage {
     await this.searchInput.click();
   }
 
-  async fillSearchInput(){
-    await this.searchInput.fill('mammut');
+  async fillSearchInput(text: string){
+    await this.searchInput.fill(text);
   }
 
   async clickSearchButton() {
